@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  script-container:
+    build: .
+    container_name: spark_container
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=5499
+      - DB_NAME=spark_db
+      - DB_USERNAME=spark_admin
+      - DB_PASSWORD=spArkDB^1892&88
+    volumes:
+      - .:/app
+    ports:
+      - "4040:4040"
+      - "7077:7077"
+      - "8087:8080"
+    command: ["python3", "/app/main.py"]
