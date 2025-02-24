@@ -3,9 +3,8 @@ import os
 import sys
 import multiprocessing
 from pyspark.sql import SparkSession # type: ignore
-from helper.schema_def import schema
-from helper.parser import parse_fixed_width
 from scripts.start_read_and_write import start_read_and_write
+from util.test_db import test_db
 
 from util.benchmark import Benchmark
 
@@ -18,6 +17,10 @@ if __name__ == "__main__":
 
     cpu_cores = multiprocessing.cpu_count()
     file_path = "data/large_fixed_width_data_5gb.txt"
+
+    test_db()
+
+
 
     with benchmark.measure("Start Spark Session"):
         spark = SparkSession.builder \
@@ -41,6 +44,3 @@ if __name__ == "__main__":
 
     spark.stop()
     print("Spark session stopped")
-
-
-
