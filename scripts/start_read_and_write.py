@@ -36,6 +36,9 @@ def start_read_and_write(spark: SparkSession, file_path) -> None:
     with benchmark.measure("Count NY and CA"):
         df = count(["NY","CA"], df)
 
+    with benchmark.measure("Count OH"):
+        df = count(["OH"], df)
+
     with benchmark.measure("Group Count by State"):
         df = group_count("state", df)
 
