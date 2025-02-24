@@ -3,7 +3,10 @@ import os
 import sys
 import multiprocessing
 from pyspark.sql import SparkSession # type: ignore
-from scripts.start_read_and_write import start_read_and_write
+from scripts.start_read_and_write import start_read_and_write\
+
+from dotenv import load_dotenv
+load_dotenv()
 
 from util.benchmark import Benchmark
 
@@ -15,7 +18,7 @@ if __name__ == "__main__":
     benchmark = Benchmark()
 
     cpu_cores = multiprocessing.cpu_count()
-    file_path = "data/large_fixed_width_data_10gb.txt"
+    file_path = "data/large_fixed_width_data_5gb.txt"
 
     with benchmark.measure("Start Spark Session"):
         spark = SparkSession.builder \
